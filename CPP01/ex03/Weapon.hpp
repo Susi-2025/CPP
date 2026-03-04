@@ -3,13 +3,15 @@
 #define WEAPON_H
 
 #include <string>
+
 class Weapon{
 private:
 	std::string type;
 
 public:
-	void setType(std::string& weaponType);
+	Weapon(std::string weaponType);
+	void setType(std::string weaponType);
 	const std::string& getType();
-}
+};
 
 #endif
