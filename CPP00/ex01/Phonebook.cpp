@@ -23,6 +23,12 @@ void Phonebook::addContact(){
     std::cout << "Contact added successfully" << std::endl;
 }
 
+std::string shorten(std::string s)
+{
+    if (s.length() > 10)
+        return s.substr(0, 9) + ".";
+    return s;
+}
 void Phonebook::searchContact() const{
     if (contact_count == 0){
         std::cout << "Phonebook is empty" << std::endl;
@@ -35,11 +41,11 @@ void Phonebook::searchContact() const{
               << "|" << std::setw(10) << "Nickname"
               << "|" << std::endl;
     std::cout << "\n-------------------------------" << std::endl;  
-    for (int i = 0 ; i < 8; i++){
+    for (int i = 0 ; i < contact_count; i++){
         std::cout << "|" << std::setw(10) << i
-                  << "|" << std::setw(10) << contacts[i].getFirstName()
-                  << "|" << std::setw(10) << contacts[i].getLastName()
-                  << "|" << std::setw(10) << contacts[i].getNickName()
+                  << "|" << std::setw(10) << shorten(contacts[i].getFirstName())
+                  << "|" << std::setw(10) << shorten(contacts[i].getLastName())
+                  << "|" << std::setw(10) << shorten(contacts[i].getNickName())
                   << "|" << std::endl;
     }
     std::cout << "\n-------------------------------" << std::endl;
@@ -48,9 +54,9 @@ void Phonebook::searchContact() const{
     int index;
     std::cin >> index;
 
-    if (std::cin.fail() || index < 0 || index >= 8) {
+    if (std::cin.fail() || index < 0 || index >= contact_count) {
         std::cin.clear();
-        //std::cin.ignore(10000, '\n');
+        std::cin.ignore(10000, '\n');
         std::cout << "Invalid index!" << std::endl;
         return;
     }
