@@ -1,6 +1,6 @@
 
-#ifndef FIX_HPP
-#define FIX_HPP
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include <string>
 
@@ -10,7 +10,6 @@ class Fixed{
 		static const int _fractionalBits = 8;
 	public:
 		Fixed();
-		// Fixed(int num_value, int num_frac_bits);
 		Fixed(const Fixed &other);
 		Fixed& operator=(const Fixed& other);
 		~Fixed();

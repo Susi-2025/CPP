@@ -1,16 +1,10 @@
 
 #include <iostream>
-#include "Fix.hpp"
+#include "Fixed.hpp"
 
 Fixed::Fixed() : _rawBits(0){
 	std::cout << "Default Constructor Called" << std::endl;
 }
-
-// Fixed::Fixed(int num_value, int num_frac_bits){
-// 	_num_value = num_value;
-// 	_num_frac_bits = num_frac_bits;
-// 	std::cout << "Fixed Parameterized Constructor Called" << std::endl;
-// }
 
 Fixed::Fixed(const Fixed &other){
 	std::cout << "Copy Constructor Called" << std::endl;
