@@ -4,7 +4,7 @@
 #include <iomanip>
 #include "Phonebook.hpp"
 
-Phonebook::Phonebook() : contact_count(0), oldest_index(1) {}
+Phonebook::Phonebook() : contact_count(0), oldest_index(0) {}
 
 void Phonebook::addContact(){
     Contact newContact;
