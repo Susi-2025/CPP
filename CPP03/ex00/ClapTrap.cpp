@@ -35,41 +35,46 @@ void ClapTrap::attack(const std::string& target)
 {
 	if (this->_energy_pts > 0 && this->_hit_pts > 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " attacks " << target << ",causing " << this->_atk_dmg << " points of damage!" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_atk_dmg << " points of damage!" << std::endl;
 	 	this->_energy_pts--;
 	}
 	else if (this->_energy_pts < 0 && this->_hit_pts > 0)
-		std::cout << "End of energy!"<< std::endl;
+		std::cout << "ClapTrap " << this->_name <<" is End of energy!"<< std::endl;
 	else if (this->_energy_pts < 0 && this->_hit_pts <= 0)
-		std::cout << "ClapTrap is dead and can't attack!"<< std::endl;
+		std::cout << "ClapTrap " << this->_name << " is dead and can't attack!"<< std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hit_pts <= 0)
 	{
-		std::cout << "ClapTrap is already dead!"<< std::endl;
+		std::cout << "ClapTrap " << this->_name <<" is already dead!"<< std::endl;
 		return;
 	}
-	std::cout << "Take Damage!!"<< std::endl;
+	std::cout << "ClapTrap " << this->_name << " Take Damage!!"<< std::endl;
 	this->_hit_pts -= amount;
-	std::cout << "Health is " << this->_hit_pts << std::endl;
+	std::cout << "ClapTrap " << this->_name << " has health: " << this->_hit_pts << std::endl;
+	if (this->_hit_pts <= 0)
+	{
+		std::cout << "ClapTrap " << this->_name << " is dead because of attack!"<< std::endl;
+		return;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_energy_pts <= 0)
 	{
-		std::cout << "End of energy!"<< std::endl;
+		std::cout << "ClapTrap " << this->_name << " End of energy!"<< std::endl;
 		return;
 	}
 	if (this->_hit_pts <= 0)
 	{
-		std::cout << "Already dead and can't be repaired!"<< std::endl;
+		std::cout << "ClapTrap " << this->_name << " already dead and can't be repaired!"<< std::endl;
 		return;
 	}
-	std::cout << "beRepaired!!"<< std::endl;
+	std::cout << "ClapTrap " << this->_name << " start to heal itself!!"<< std::endl;
 	this->_hit_pts += amount;
 	this->_energy_pts--;
-	std::cout << "Health is " << this->_hit_pts << std::endl;
+	std::cout << "ClapTrap " << this->_name << " has health: " << this->_hit_pts << std::endl;
 }
