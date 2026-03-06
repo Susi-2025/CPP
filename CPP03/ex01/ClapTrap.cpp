@@ -7,11 +7,11 @@ ClapTrap::ClapTrap(): _name("default"), _hit_pts(10), _energy_pts(10), _atk_dmg(
 }
 
 ClapTrap::ClapTrap(std::string name){
+	std::cout << "ClapTrap " << name <<" Constructor called" << std::endl;
 	_name = name;
 	_hit_pts = 10;
 	_energy_pts= 10;
 	_atk_dmg = 0;
-	std::cout << "ClapTrap " << name <<" Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other){
@@ -41,9 +41,9 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_atk_dmg << " points of damage!" << std::endl;
 	 	this->_energy_pts--;
 	}
-	else if (this->_energy_pts <= 0 && this->_hit_pts > 0)
+	else if (this->_energy_pts < 0 && this->_hit_pts > 0)
 		std::cout << "ClapTrap " << this->_name <<" is End of energy!"<< std::endl;
-	else if (this->_energy_pts <= 0 && this->_hit_pts <= 0)
+	else if (this->_energy_pts < 0 && this->_hit_pts <= 0)
 		std::cout << "ClapTrap " << this->_name << " is dead and can't attack!"<< std::endl;
 }
 

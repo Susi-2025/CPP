@@ -13,5 +13,6 @@ int main()
 	ClapTrap B = A;
 	B.takeDamage(20);
 	B.beRepaired(9);
+	ClapTrap C(B);
 	return 0;
 }
