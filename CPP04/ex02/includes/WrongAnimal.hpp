@@ -11,14 +11,9 @@ class WrongAnimal{
 		WrongAnimal(const WrongAnimal& other);
 		WrongAnimal& operator=(const WrongAnimal& other);
 		virtual ~WrongAnimal();
+		
 		std::string getType() const;
-		virtual void makeSound() const;
-};
-
-class WrongCat: public WrongAnimal{
-	public:
-		WrongCat();
-		void makeSound() const override;
+		virtual void makeSound() const = 0;
 };
 
 #endif

@@ -1,5 +1,5 @@
 
-#include "Animal.hpp"
+#include "../includes/Animal.hpp"
 
 #include <iostream>
 
@@ -31,32 +31,9 @@ Animal::~Animal()
 
 std::string Animal::getType() const
 {	
-	// std::cout << "getType is called" << std::endl;
 	return type;
 }
 void Animal::makeSound() const
 {
 	std::cout << "Animal " << type << " has the sound is: " << std::endl;
-}
-
-Dog::Dog()
-{
-	std::cout << "Dog Default Constructor called" << std::endl;
-	type = "Dog";
-}
-
-void Dog::makeSound() const
-{
-	std::cout << "Woof Woof" << std::endl;
-}
-
-Cat::Cat()
-{
-	std::cout << "Cat Default Constructor called" << std::endl;
-	type = "Cat";
-}
-
-void Cat::makeSound() const
-{
-	std::cout << "Meo Meo" << std::endl;
 }

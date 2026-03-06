@@ -1,5 +1,5 @@
 
-#include "WrongAnimal.hpp"
+#include "../includes/WrongAnimal.hpp"
 
 #include <iostream>
 
@@ -33,18 +33,8 @@ std::string WrongAnimal::getType() const
 {
 	return type;
 }
+
 void WrongAnimal::makeSound() const
 {
 	std::cout << "WrongAnimal " << type << " has the sound is: " << std::endl;
-}
-
-WrongCat::WrongCat()
-{
-	std::cout << "WrongCat Default Constructor called" << std::endl;
-	type = "Chicken";
-}
-
-void WrongCat::makeSound() const
-{
-	std::cout << "Chick Chick" << std::endl;
 }

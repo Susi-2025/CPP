@@ -12,19 +12,7 @@ class Animal{
 		Animal& operator=(const Animal& other);
 		virtual ~Animal();
 		std::string getType() const;
-		virtual void makeSound() const;
-};
-
-class Dog: public Animal{
-	public:
-		Dog();
-		void makeSound() const override;
-};
-
-class Cat: public Animal{
-	public:
-		Cat();
-		void makeSound() const override;
+		virtual void makeSound() const = 0;
 };
 
 #endif
