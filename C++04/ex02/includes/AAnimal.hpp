@@ -5,16 +5,16 @@ class AAnimal
 {
 	protected:
 		std::string _type;
+	
+	public:
 		AAnimal();
 		AAnimal(const std::string &type);
 		AAnimal(const AAnimal& other);
-	
-	public:
 		AAnimal& operator=(const AAnimal& other);
 		virtual ~AAnimal();
 
 		std::string getType() const;
-		void setType(std::string const &type);
+		// void setType(std::string const &type);
 		
 		virtual void makeSound() const = 0; // pure virtual->abstract
 

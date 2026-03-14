@@ -46,3 +46,8 @@ Brain* Dog::getBrain() const
 {
 	return _dog_brain;
 }
+
+bool Dog::hasBrain() const
+{
+	return (this->_dog_brain != nullptr);
+}

@@ -30,27 +30,27 @@ Brain::~Brain()
 	std::cout << "Brain destructor called" << std::endl;
 }
 
-void Brain::setIdea(const std::string& str, int i)
+void Brain::setIdea(const std::string& str, int index)
 {
-	if (i < 0 || i > 99)
+	if (index < 0 || index > 99)
 	{
 		std::cout << "The index of idea in brain must be 0-100." << std::endl;
 		return ;
 	}
-	this->_ideas[i] = str;
+	this->_ideas[index] = str;
 }
 
-const std::string Brain::getIdea(int i) const
+const std::string Brain::getIdea(int index) const
 {
-	if (i < 0 || i > 99)
+	if (index < 0 || index > 99)
 	{
 		std::cout << "The index of idea in brain must be 0-100." << std::endl;
 		return "";
 	}
-	if (_ideas[i].empty())
+	if (_ideas[index].empty())
 	{
-		std::cout << "The idea at index " << i << " is empty."<< std::endl;
+		std::cout << "The idea at index " << index << " is empty."<< std::endl;
 		return "";
 	}
-	return (_ideas[i]);
+	return (_ideas[index]);
 }

@@ -33,11 +33,11 @@ std::string Animal::getType() const
 {
 	return (_type);
 }
-void Animal::setType(const std::string &type)
-{
-	std::cout << "Animal setType called" << std::endl;
-	_type = type;
-}
+// void Animal::setType(const std::string &type)
+// {
+// 	std::cout << "Animal setType called" << std::endl;
+// 	_type = type;
+// }
 
 void Animal::makeSound() const
 {

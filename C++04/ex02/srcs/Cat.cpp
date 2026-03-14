@@ -45,3 +45,8 @@ Brain* Cat::getBrain() const
 {
 	return _cat_brain;
 }
+
+bool Cat::hasBrain() const
+{
+	return (this->_cat_brain != nullptr);
+}

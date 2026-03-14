@@ -12,6 +12,14 @@ int main()
     const Animal* j = new Dog();
     const Animal* i = new Cat();
 
+    if (meta == nullptr || j == nullptr || i == nullptr) {
+        std::cout << "[ERROR] Memory allocation failed!" << std::endl;
+        delete meta;
+        delete j;
+        delete i;
+        return 1;
+    }
+    
     std::cout << "\n=== Testing getType() ===" << std::endl;
     std::cout << "j->getType(): " << j->getType() << std::endl;
     std::cout << "i->getType(): " << i->getType() << std::endl;

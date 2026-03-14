@@ -3,7 +3,7 @@
 
 class Brain
 {
-	protected:
+	private:
 		std::string _ideas[100];
 	
 	public:
@@ -12,6 +12,6 @@ class Brain
 		Brain& operator=(const Brain& other);
 		~Brain();
 		
-		void setIdea(const std::string& str, int i);
-		const std::string getIdea(int i) const;
+		void setIdea(const std::string& str, int index);
+		const std::string getIdea(int index) const;
 };

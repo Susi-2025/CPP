@@ -53,20 +53,32 @@ int main()
     std::cout << "-------Test Deep Copy---------" << std::endl;
 
     Dog* originalDog = new Dog("Husky");
-    originalDog->getBrain()->setIdea("Human is Best", 0);
 
-    Dog copiedDog = *originalDog; // Copy constructor works
-
-    copiedDog.getBrain()->setIdea("Dog is best friend", 0);
-
-    // Verify deep copy
-    std::cout << "Original Dog idea 0: "
-            << originalDog->getBrain()->getIdea(0) << std::endl;
-    std::cout << "Copied Dog idea 0: "
-            << copiedDog.getBrain()->getIdea(0) << std::endl;
-
-    delete originalDog;
-
+    if (!originalDog->hasBrain())
+    {
+        std::cout << "[ERROR] Original dog has no brain!" << std::endl;
+        delete originalDog;
+    }
+    else
+    {
+        originalDog->getBrain()->setIdea("Human is Best", 0);
+        Dog* copiedDog = new Dog(*originalDog); // copy constructor
+        if (!copiedDog->hasBrain())
+        {
+            std::cout << "[ERROR] Copied dog has no brain!" << std::endl;
+            delete copiedDog;
+        }
+        else
+        {
+            copiedDog->getBrain()->setIdea("Dog is best friend", 0);
+            std::cout << "Original Dog idea 0: "
+                    << originalDog->getBrain()->getIdea(0) << std::endl;
+            std::cout << "Copied Dog idea 0: "
+                    << copiedDog->getBrain()->getIdea(0) << std::endl;
+            delete copiedDog;
+        }
+        delete originalDog;
+    };
     std::cout << "-------Clean up---------" << std::endl;
     for (int i = 0; i < 10; i++)
     {

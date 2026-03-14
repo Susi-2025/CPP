@@ -6,7 +6,7 @@
 class Dog : public AAnimal
 {
 	private:
-		Brain* _dog_brain;
+		Brain* _dog_brain = nullptr;
 		
 	public:
 		Dog();
@@ -17,4 +17,5 @@ class Dog : public AAnimal
 
 		void makeSound() const override;
 		Brain* getBrain() const;
+		bool hasBrain() const;
 };
