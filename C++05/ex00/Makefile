@@ -1,14 +1,15 @@
 
-NAME=Bureaucat
+NAME=Bureaucrat
+
 CXX=c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++17
+CXXFLAGS= -Wall -Wextra -Werror -Iincludes -std=c++17
 
 SRC_DIR = ./srcs
 OBJ_DIR = ./object
 
-SRCS_FILES = main.cpp Animal.cpp Bureaucat.cpp
+SRCS_FILES = main.cpp Bureaucrat.cpp
+
 SRCS =	$(addprefix $(SRC_DIR)/, $(SRCS_FILES))
-# OBJS=$(SRCS:.cpp=.o)
 
 OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 
@@ -17,6 +18,8 @@ all:$(NAME)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+.SECONDARY: $(OBJS)
 
 $(NAME):$(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
