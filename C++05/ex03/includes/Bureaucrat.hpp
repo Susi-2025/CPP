@@ -5,6 +5,8 @@
 #include <iostream>
 #include <exception>
 
+class AForm;
+
 class Bureaucrat{
 
     private:
@@ -30,6 +32,9 @@ class Bureaucrat{
         class GradeTooLowException: public std::exception{
             const char* what() const noexcept override;
         };
+
+        void signForm(AForm& obj);
+        void executeForm(AForm const& form);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);

@@ -7,19 +7,22 @@
 
 class Bureaucrat;
 
-class Form{
+class AForm{
     private:
         const std::string   _name;
         bool                _signed;
         const int           _sign_grade;
         const int           _exec_grade;
 
+    protected:
+        virtual void executeAction() const = 0; // execute # actions in # forms
+
     public:
-        Form() = delete;
-        Form& operator=(const Form& other) = delete;
-        Form(const std::string& name, const int sign_grade, const int exec_grade);
-        Form(const Form& other);
-        ~Form();
+        AForm() = delete;
+        AForm& operator=(const AForm& other) = delete;
+        AForm(const std::string& name, const int sign_grade, const int exec_grade);
+        AForm(const AForm& other);
+        virtual ~AForm();
 
         const std::string& getName() const;
         bool getSigned() const;
@@ -34,8 +37,14 @@ class Form{
             const char* what() const noexcept override;
         };
 
-        void beSigned(const Bureaucrat& obj);
+        class FormNotSignedException: public std::exception{
+            const char* what() const noexcept override;
+        };
 
+        void beSigned(const Bureaucrat& obj);
+        void execute(Bureaucrat const & executor) const;
+
+        virtual const std::string& getTarget() const = 0; // need for abstract
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& obj);
+std::ostream& operator<<(std::ostream& os, const AForm& obj);

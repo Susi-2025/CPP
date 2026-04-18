@@ -1,9 +1,8 @@
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include <stdexcept>
 
-Form::Form(const std::string& name, const int sign_grade, const int exec_grade):
+AForm::AForm(const std::string& name, const int sign_grade, const int exec_grade):
     _name(name),
     _signed(false) ,
     _sign_grade(sign_grade),
@@ -15,37 +14,41 @@ Form::Form(const std::string& name, const int sign_grade, const int exec_grade):
         throw GradeTooLowException();
 }
 
-Form::Form(const Form& other):
+AForm::AForm(const AForm& other):
     _name(other._name), 
     _signed(other._signed) , 
     _sign_grade(other._sign_grade),
     _exec_grade(other._exec_grade){}
 
-Form:: ~Form(){}
+AForm:: ~AForm(){}
 
-const std::string& Form::getName() const{
+const std::string& AForm::getName() const{
     return _name;
 }
 
-bool Form::getSigned() const{
+bool AForm::getSigned() const{
     return _signed;
 }
-int Form::getSignGrade() const{
+int AForm::getSignGrade() const{
     return _sign_grade;
 }
-int Form::getExecGrade() const{
+int AForm::getExecGrade() const{
     return _exec_grade;
 }
 
-const char* Form::GradeTooHighException:: what() const noexcept{
+const char* AForm::GradeTooHighException:: what() const noexcept{
     return "Grade is too High!!!";
 }
 
-const char* Form::GradeTooLowException:: what() const noexcept{
+const char* AForm::GradeTooLowException:: what() const noexcept{
     return "Grade is too Low!!!";
 }
 
-void Form::beSigned(const Bureaucrat& obj)
+const char* AForm::FormNotSignedException:: what() const noexcept{
+    return "Form is not yet signed so couldn't be executed";
+}
+
+void AForm::beSigned(const Bureaucrat& obj)
 {
     if (_signed)
         throw std::logic_error("Form already signed");
@@ -55,7 +58,15 @@ void Form::beSigned(const Bureaucrat& obj)
         throw GradeTooLowException();
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& obj){
+void AForm::execute(Bureaucrat const& executor) const{
+    if (!_signed)
+        throw FormNotSignedException();
+    if (executor.getGrade() > _exec_grade)
+        throw GradeTooLowException();
+    executeAction();
+}
+
+std::ostream& operator<<(std::ostream& os, const AForm& obj){
     os << obj.getName() << " can be signed from grade: " << obj.getSignGrade()
     << " can be executed from grade: " << obj.getExecGrade() 
     << " , is signed: " << (obj.getSigned() ? "Yes" : "No") << std::endl;

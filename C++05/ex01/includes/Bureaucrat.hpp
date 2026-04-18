@@ -1,42 +1,39 @@
 
 #pragma once
+
 #include <string>
 #include <iostream>
-#include "Form.hpp"
+#include <exception>
 
 class Form;
 
-class Bureaucrat
-{
-	private:
-		const std::string	_name;
-		int 				_grade;
-	public:
-		Bureaucrat() = delete;
-		Bureaucrat(const std::string& name, int grade);
-		~Bureaucrat();
-		
-		Bureaucrat(const Bureaucrat& other);
-		Bureaucrat& operator=(const Bureaucrat& other) = delete;
+class Bureaucrat{
 
-		class GradeTooHighException: public std::exception
-		{
-			public:
-				const char* what() const noexcept override;
-		};
-		class GradeTooLowException: public std::exception
-		{
-			public:
-				const char* what() const noexcept override;
-		};
+    private:
+        const std::string   _name;
+        int                 _grade;
 
-		const std::string& getName() const;
-		int getGrade() const;
+    public:
+        Bureaucrat() = delete;
+        Bureaucrat(const std::string& name, int grade);
+        Bureaucrat(const Bureaucrat& obj);
+        Bureaucrat& operator=(const Bureaucrat& obj) = delete;
+        ~Bureaucrat();
 
-		void incrementGrade();
-		void decrementGrade();
+        const std::string& getName() const;
+        int  getGrade() const;
 
-		void signForm(Form& f) const;
+        void incrementGrade();
+        void decrementGrade();
+
+        class GradeTooHighException: public std::exception{
+            const char* what() const noexcept override;
+        };
+        class GradeTooLowException: public std::exception{
+            const char* what() const noexcept override;
+        };
+
+        void signForm(Form& obj);
 };
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& obj);
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
